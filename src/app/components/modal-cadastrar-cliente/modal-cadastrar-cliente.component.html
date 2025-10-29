@@ -1,75 +1,91 @@
 <div>
-  <div
-    class="px-6 py-4 border-b"
-    id="title"
-    fxLayout="row"
-    fxLayoutAlign="start center"
-  >
-    <h2 class="title m-0">Novo Agendamento</h2>
+  <div class="px-6 py-4 border-b" fxLayout="row" fxLayoutAlign="start center">
+    <h2 class="title m-0">Novo Cliente</h2>
   </div>
 
   <mat-dialog-content>
     <div @fadeInUp fxFlex="auto" [formGroup]="form">
-      <div class="px-6 py-4" fxLayout="column">
-        <mat-form-field>
-          <mat-label>Cliente</mat-label>
-          <input matInput required formControlName="cliente" placeholder='Nome do cliente'/>
+      <div class="px-6 py-4" fxLayout="column" fxLayoutGap="16px">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" placeholder="Digite seu nome completo" required />
         </mat-form-field>
 
-        <div class="py-4" fxLayout="column">
-          <mat-form-field>
-            <mat-label>Serviço</mat-label>
-            <input matInput required formControlName="servico" placeholder='Ex.:corte'/>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>CPF</mat-label>
+          <input matInput formControlName="cpf" placeholder="Digite seu CPF" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput [matDatepicker]="nascimentoPicker" formControlName="dataNascimento" required />
+          <mat-datepicker-toggle matSuffix [for]="nascimentoPicker"></mat-datepicker-toggle>
+          <mat-datepicker #nascimentoPicker></mat-datepicker>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayout.lt-sm="row" fxLayoutGap="8px" fxLayoutGap.lt-sm="0">
+          <mat-form-field appearance="outline" fxFlex="auto">
+            <mat-label>Gênero</mat-label>
+            <mat-select formControlName="genero" required>
+              <mat-option value="Masculino">Masculino</mat-option>
+              <mat-option value="Feminino">Feminino</mat-option>
+              <mat-option value="Outro">Outro</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="auto">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="telefone" placeholder="Digite seu número de contato" required />
           </mat-form-field>
         </div>
 
-        <div fxLayout="row"fxLayout.lt-sm="row"fxLayoutGap="8px"fxLayoutGap.lt-sm="0">
-          <mat-form-field fxFlex="auto">
-            <mat-label>Tempo Estimado</mat-label>
-            <input matInput required formControlName="tempoEstimado" placeholder='Tempo de duração em minutos'/>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>CEP</mat-label>
+          <input matInput formControlName="cep" placeholder="Digite o CEP do seu local" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Rua</mat-label>
+          <input matInput formControlName="rua" placeholder="Ex: Av. Paulista" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Número</mat-label>
+          <input matInput formControlName="numero" placeholder="Digite o número do seu local" />
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
+        <mat-form-field appearance="outline" fxFlex="auto">
+          <mat-label>Bairro</mat-label>
+          <input matInput formControlName="bairro" placeholder="Ex: Centro" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="auto">
+          <mat-label>Complemento</mat-label>
+          <input matInput formControlName="complemento" placeholder="Apto, bloco, etc." />
+        </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
+          <mat-form-field appearance="outline" fxFlex="auto">
+            <mat-label>Cidade</mat-label>
+            <input matInput formControlName="cidade" placeholder="Ex: São Paulo" required />
           </mat-form-field>
 
-          <mat-form-field fxFlex="auto">
-            <mat-label>Valor do Serviço</mat-label>
-            <input matInput required formControlName="valorServico" placeholder='R$ Valor do Serviço'/>
+          <mat-form-field appearance="outline" fxFlex="auto">
+            <mat-label>Estado</mat-label>
+            <input matInput formControlName="estado" placeholder="Ex: RJ" required />
           </mat-form-field>
         </div>
 
-        <div class="py-4" fxLayout="column">
-          <mat-form-field>
-            <mat-label>Responsável</mat-label>
-            <input matInput required formControlName="responsavel" placeholder='Nome do Profissional' />
-          </mat-form-field>
-        </div>
-
-        <div
-          fxLayout="row"
-          fxLayout.lt-sm="column"
-          fxLayoutGap="16px"
-          fxLayoutGap.lt-sm="0"
-        >
-          <mat-form-field fxFlex="auto">
-            <mat-label>Data Atendimento</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dtAtendimento"/>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field fxFlex="auto">
-            <mat-label>Status</mat-label>
-              <mat-select formControlName="status">
-                <mat-option>Aceito</mat-option>
-                <mat-option>Pendente</mat-option>
-                <mat-option>Recusado</mat-option>
-              </mat-select>
-          </mat-form-field>
-        </div>
       </div>
     </div>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button mat-raised-button color="primary">Salvar</button>
+    <button mat-raised-button color="primary" [disabled]="form.invalid">Cadastrar</button>
   </mat-dialog-actions>
 </div>
+

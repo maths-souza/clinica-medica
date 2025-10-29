@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatNativeDateModule,
     MatInputModule,
-
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

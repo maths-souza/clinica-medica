@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-cadastrar-cliente',
@@ -9,15 +9,20 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ModalCadastrarClienteComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private cd: ChangeDetectorRef,private fb: FormBuilder) { 
+  constructor(private cd: ChangeDetectorRef, private fb: FormBuilder) {
     this.form = this.fb.group({
-      cliente: [''],
-      servico: [''],
-      tempoEstimado: [''],
-      valorServico: [''],
-      responsavel: [''],
-      dtAtendimento: [''],
-      status: [''],
+      nome: ['', Validators.required],
+      cpf: ['', Validators.required],
+      dataNascimento: ['', Validators.required],
+      genero: ['', Validators.required],
+      telefone: ['', Validators.required],
+      cep: ['', Validators.required],
+      rua: ['', Validators.required],
+      bairro: ['', Validators.required],
+      numero: [''],
+      complemento: [''],
+      cidade: ['', Validators.required],
+      estado: ['', Validators.required],
     });
   }
 
