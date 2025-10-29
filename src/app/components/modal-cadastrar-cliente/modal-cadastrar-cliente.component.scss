@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.input-filtro {
+    width: 100%;
+}
+
+.botao-estilo {
+    background-color: #262B39;
+    color: white;
+}
+
+.botao-adicionar {
+    color: white;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.col {
+  display: flex;
+  align-items: center;
+}

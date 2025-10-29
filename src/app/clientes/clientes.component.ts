@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalCadastrarClienteComponent } from '../components/modal-cadastrar-cliente/modal-cadastrar-cliente.component';
 
 @Component({
   selector: 'app-clientes',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalCadastrarClienteComponent, {
+      width: '600px',
+    });
+
+
+
   }
 
 }

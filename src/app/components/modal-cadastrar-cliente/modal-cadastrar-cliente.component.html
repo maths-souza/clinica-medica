@@ -1,0 +1,75 @@
+<div>
+  <div
+    class="px-6 py-4 border-b"
+    id="title"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <h2 class="title m-0">Novo Agendamento</h2>
+  </div>
+
+  <mat-dialog-content>
+    <div @fadeInUp fxFlex="auto" [formGroup]="form">
+      <div class="px-6 py-4" fxLayout="column">
+        <mat-form-field>
+          <mat-label>Cliente</mat-label>
+          <input matInput required formControlName="cliente" placeholder='Nome do cliente'/>
+        </mat-form-field>
+
+        <div class="py-4" fxLayout="column">
+          <mat-form-field>
+            <mat-label>Serviço</mat-label>
+            <input matInput required formControlName="servico" placeholder='Ex.:corte'/>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row"fxLayout.lt-sm="row"fxLayoutGap="8px"fxLayoutGap.lt-sm="0">
+          <mat-form-field fxFlex="auto">
+            <mat-label>Tempo Estimado</mat-label>
+            <input matInput required formControlName="tempoEstimado" placeholder='Tempo de duração em minutos'/>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="auto">
+            <mat-label>Valor do Serviço</mat-label>
+            <input matInput required formControlName="valorServico" placeholder='R$ Valor do Serviço'/>
+          </mat-form-field>
+        </div>
+
+        <div class="py-4" fxLayout="column">
+          <mat-form-field>
+            <mat-label>Responsável</mat-label>
+            <input matInput required formControlName="responsavel" placeholder='Nome do Profissional' />
+          </mat-form-field>
+        </div>
+
+        <div
+          fxLayout="row"
+          fxLayout.lt-sm="column"
+          fxLayoutGap="16px"
+          fxLayoutGap.lt-sm="0"
+        >
+          <mat-form-field fxFlex="auto">
+            <mat-label>Data Atendimento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dtAtendimento"/>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="auto">
+            <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                <mat-option>Aceito</mat-option>
+                <mat-option>Pendente</mat-option>
+                <mat-option>Recusado</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button mat-raised-button color="primary">Salvar</button>
+  </mat-dialog-actions>
+</div>
