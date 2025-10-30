@@ -8,8 +8,8 @@
       <div class="px-6 py-4" fxLayout="column" fxLayoutGap="16px">
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Nome</mat-label>
-          <input matInput formControlName="nome" placeholder="Digite seu nome completo" required />
+          <mat-label>Nome Completo</mat-label>
+          <input matInput formControlName="nomeCompleto" placeholder="Digite seu nome completo" type="text" required />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
@@ -42,12 +42,12 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>CEP</mat-label>
-          <input matInput formControlName="cep" placeholder="Digite o CEP do seu local" required />
+          <input matInput formControlName="cep" placeholder="Digite o CEP do seu local" (blur)="onCepBlur()" required />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Rua</mat-label>
-          <input matInput formControlName="rua" placeholder="Ex: Av. Paulista" required />
+          <mat-label>Logradouro</mat-label>
+          <input matInput formControlName="logradouro" placeholder="Ex: Av. Paulista" required />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
@@ -56,15 +56,15 @@
         </mat-form-field>
 
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
-        <mat-form-field appearance="outline" fxFlex="auto">
-          <mat-label>Bairro</mat-label>
-          <input matInput formControlName="bairro" placeholder="Ex: Centro" required />
-        </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="auto">
+            <mat-label>Bairro</mat-label>
+            <input matInput formControlName="bairro" placeholder="Ex: Centro" required />
+          </mat-form-field>
 
-        <mat-form-field appearance="outline" fxFlex="auto">
-          <mat-label>Complemento</mat-label>
-          <input matInput formControlName="complemento" placeholder="Apto, bloco, etc." />
-        </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="auto">
+            <mat-label>Complemento</mat-label>
+            <input matInput formControlName="complemento" placeholder="Apto, bloco, etc." />
+          </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
@@ -88,4 +88,3 @@
     <button mat-raised-button color="primary" [disabled]="form.invalid">Cadastrar</button>
   </mat-dialog-actions>
 </div>
-

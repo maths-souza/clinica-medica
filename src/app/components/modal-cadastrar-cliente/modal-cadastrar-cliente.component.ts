@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ViacepService } from 'src/app/services/viacep.service';
 
 @Component({
   selector: 'app-modal-cadastrar-cliente',
@@ -9,15 +10,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ModalCadastrarClienteComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private cd: ChangeDetectorRef, private fb: FormBuilder) {
+  constructor(private cd: ChangeDetectorRef, private fb: FormBuilder, private viacep: ViacepService) {
     this.form = this.fb.group({
-      nome: ['', Validators.required],
+      nomeCompleto: ['', Validators.required],
       cpf: ['', Validators.required],
       dataNascimento: ['', Validators.required],
       genero: ['', Validators.required],
       telefone: ['', Validators.required],
       cep: ['', Validators.required],
-      rua: ['', Validators.required],
+      logradouro: ['', Validators.required],
       bairro: ['', Validators.required],
       numero: [''],
       complemento: [''],
@@ -26,7 +27,45 @@ export class ModalCadastrarClienteComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  onCepBlur(): void {
+    const rawCep = this.form.get('cep')?.value || '';
+    const cep = rawCep.toString().replace(/\D/g, '');
+
+    if (cep.length !== 8) {
+      return;
+    }
+
+    this.viacep.buscarCep(cep).subscribe({
+      next: (response: any) => {
+
+        if (response && !response.erro) {
+          this.form.patchValue({
+            logradouro: response.logradouro || '',
+            bairro: response.bairro || '',
+            cidade: response.localidade || '',
+            estado: response.uf || ''
+          });
+        } else {
+          this.form.patchValue({
+            logradouro: '',
+            bairro: '',
+            cidade: '',
+            estado: ''
+          });
+        }
+        this.cd.markForCheck();
+      },
+      error: () => {
+        this.form.patchValue({
+          logradouro: '',
+          bairro: '',
+          cidade: '',
+          estado: ''
+        });
+        this.cd.markForCheck();
+      }
+    });
+  }
 }
