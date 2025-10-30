@@ -30,8 +30,7 @@ export class ModalCadastrarClienteComponent implements OnInit {
   ngOnInit(): void { }
 
   onCepBlur(): void {
-    const rawCep = this.form.get('cep')?.value || '';
-    const cep = rawCep.toString().replace(/\D/g, '');
+    const cep = (this.form.get('cep')?.value || '').replace(/\D/g, '');
 
     if (cep.length !== 8) {
       return;

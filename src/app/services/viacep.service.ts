@@ -13,7 +13,6 @@ export class ViacepService {
   constructor(private http: HttpClient) { }
 
   buscarCep(cep: string): Observable<any> {
-    const sanitized = (cep || '').toString().replace(/\D/g, '');
-    return this.http.get(`${this.urlApi}/${sanitized}/json/`);
+  return this.http.get(`${this.urlApi}/${cep}/json/`);
   }
 }
