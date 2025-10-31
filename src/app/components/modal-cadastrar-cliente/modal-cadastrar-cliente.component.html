@@ -19,7 +19,8 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Data de Nascimento</mat-label>
-          <input matInput [matDatepicker]="nascimentoPicker" formControlName="dataNascimento" required />
+          <input matInput [matDatepicker]="nascimentoPicker" formControlName="dataNascimento" placeholder="DD/MM/AAAA"
+            required />
           <mat-datepicker-toggle matSuffix [for]="nascimentoPicker"></mat-datepicker-toggle>
           <mat-datepicker #nascimentoPicker></mat-datepicker>
         </mat-form-field>
@@ -87,7 +88,7 @@
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button mat-raised-button color="primary" (click)="cadastrar()"
-      [disabled]="form.invalid">Cadastrar</button>
+    <button mat-button mat-raised-button color="primary" [disabled]="form.invalid"
+      (click)="cadastrar()">Cadastrar</button>
   </mat-dialog-actions>
 </div>

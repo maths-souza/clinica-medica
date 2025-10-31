@@ -1,0 +1,33 @@
+.container-centralizado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.filtro-container {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+.filtro-input {
+  width: 100%;
+  font-size: 16px;
+}
+
+.tabela-container {
+  width: 100%;
+}
+
+.tabela-centralizada {
+  width: 100%;
+  table-layout: auto;
+}
+
+td,
+th {
+  padding: 8px !important;
+}

@@ -15,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ClientesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['nomeCompleto', 'dataNascimento', 'cpf', 'genero', 'telefone', 'cep', 'actions'];
   dataSource!: MatTableDataSource<Cliente>;
-  clientes: Cliente[] = []; // alterar para receber do backend - Reserva
+  clientes: Cliente[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -24,7 +24,6 @@ export class ClientesComponent implements OnInit, AfterViewInit {
 
   constructor(private fb: FormBuilder, private dialog: MatDialog) {
 
-    // Assign the data to the data source for the table to render
 
     this.form = this.fb.group({
       filtro: [''],
@@ -41,6 +40,11 @@ export class ClientesComponent implements OnInit, AfterViewInit {
       { id: 4, nomeCompleto: 'Ana Pereira', dataNascimento: new Date('1965-10-04'), cpf: '111.111.111-11', genero: 'Feminino', telefone: "(11) 99999-9999", cep: '01001-000' },
     ];
     this.dataSource = new MatTableDataSource(this.clientes);
+
+    this.form = this.fb.group({
+      filtro: ['']
+
+    });
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -56,6 +60,20 @@ export class ClientesComponent implements OnInit, AfterViewInit {
     }
   }
 
+  limparDados(cliente: Cliente) {
+    let indiceRemover = this.clientes.indexOf(cliente);
+    if (indiceRemover > -1) {
+      this.clientes.splice(indiceRemover, 1);
+      this.dataSource = new MatTableDataSource(this.clientes);
+    }
+  }
+
+
+  limparFiltro() {
+    this.form.get('filtro')?.setValue('');
+    this.dataSource.filter = '';
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(ModalCadastrarClienteComponent, {
       width: '600px'
@@ -65,8 +83,26 @@ export class ClientesComponent implements OnInit, AfterViewInit {
       if (novoCliente) {
         this.clientes.push(novoCliente);
         this.dataSource = new MatTableDataSource(this.clientes);
+        this.limparFiltro();
       }
     });
   };
+
+  editar(cliente: Cliente) {
+    const dialogRef = this.dialog.open(ModalCadastrarClienteComponent, {
+      width: '600px',
+      data: cliente
+    });
+
+    dialogRef.afterClosed().subscribe((clienteEditado: Cliente) => {
+      if (clienteEditado) {
+        let indEditado = this.clientes.indexOf(cliente);
+        if (indEditado > -1) {
+          this.clientes[indEditado] = clienteEditado;
+          this.dataSource = new MatTableDataSource(this.clientes);
+        }
+      }
+    });
+  }
 }
 

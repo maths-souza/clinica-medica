@@ -12,7 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ModalCadastrarClienteComponent } from './components/modal-cadastrar-cliente/modal-cadastrar-cliente.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions, MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +25,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NgxMaskModule } from 'ngx-mask';
+
+let globalFormFieldOptions: MatFormFieldDefaultOptions = {
+  appearance: "outline",
+};
 
 @NgModule({
   declarations: [
@@ -58,7 +62,9 @@ import { NgxMaskModule } from 'ngx-mask';
     NgxMaskModule.forRoot()
 
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: globalFormFieldOptions}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
