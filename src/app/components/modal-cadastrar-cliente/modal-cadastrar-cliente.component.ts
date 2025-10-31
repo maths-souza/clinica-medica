@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ViacepService } from 'src/app/services/viacep.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ViacepService } from 'src/app/services/viacep.service';
 export class ModalCadastrarClienteComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private cd: ChangeDetectorRef, private fb: FormBuilder, private viacep: ViacepService) {
+  constructor(private cd: ChangeDetectorRef, private fb: FormBuilder, private viacep: ViacepService, private dialogRef: MatDialogRef<ModalCadastrarClienteComponent>) {
     this.form = this.fb.group({
       nomeCompleto: ['', Validators.required],
       cpf: ['', Validators.required],
@@ -28,6 +29,10 @@ export class ModalCadastrarClienteComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  cadastrar() {
+    this.dialogRef.close(this.form?.value)
+  }
 
   onCepBlur(): void {
     const cep = (this.form.get('cep')?.value || '').replace(/\D/g, '');

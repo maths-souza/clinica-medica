@@ -14,7 +14,7 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>CPF</mat-label>
-          <input matInput formControlName="cpf" placeholder="Digite seu CPF" required />
+          <input matInput formControlName="cpf" placeholder="Digite seu CPF" mask="000.000.000-00" required />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
@@ -36,13 +36,15 @@
 
           <mat-form-field appearance="outline" fxFlex="auto">
             <mat-label>Telefone</mat-label>
-            <input matInput formControlName="telefone" placeholder="Digite seu número de contato" required />
+            <input matInput formControlName="telefone" placeholder="Digite seu número de contato" mask="(00) 00000-0000"
+              required />
           </mat-form-field>
         </div>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>CEP</mat-label>
-          <input matInput formControlName="cep" placeholder="Digite o CEP do seu local" (blur)="onCepBlur()" required />
+          <input matInput formControlName="cep" placeholder="Digite o CEP do seu local" (blur)="onCepBlur()"
+            mask="00.000-000" required />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
@@ -52,7 +54,7 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Número</mat-label>
-          <input matInput formControlName="numero" placeholder="Digite o número do seu local" />
+          <input matInput formControlName="numero" placeholder="Digite o número do seu local" mask="00000" />
         </mat-form-field>
 
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
@@ -85,6 +87,7 @@
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-raised-button color="primary" [disabled]="form.invalid">Cadastrar</button>
+    <button mat-button mat-raised-button color="primary" (click)="cadastrar()"
+      [disabled]="form.invalid">Cadastrar</button>
   </mat-dialog-actions>
 </div>

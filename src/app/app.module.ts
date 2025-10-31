@@ -17,10 +17,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -48,8 +52,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     FlexLayoutModule,
     HttpClientModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    NgxMaskModule.forRoot()
+
   ],
-  providers: [],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

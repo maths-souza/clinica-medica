@@ -1,0 +1,53 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 15%;
+}
+
+.input-filtro {
+    width: 100%;
+}
+
+.botao-estilo {
+    background-color: #262B39;
+    color: white;
+}
+
+.botao-adicionar {
+    color: white;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.col {
+  display: flex;
+  align-items: center;
+}
+
+.grade-icon {
+    font-size: 40px;
+    display: inline;
+    align-items: center;
+}
+
+button[mat-button] mat-icon,
+button[mat-raised-button] mat-icon {
+  vertical-align: middle;
+}
+
+.icones-acoes mat-icon-button {
+  display: inline;
+  font-size: 30px;
+  margin-right: 15px;
+}

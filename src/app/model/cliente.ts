@@ -1,10 +1,9 @@
 export class Cliente {
     id!: number;
-    logradouro!: string;
-    numero!: string;
-    bairro!: string;
-    complemento!: string;
-    cidade!: string;
-    estado!: string;
+    nomeCompleto!: string;
+    dataNascimento!: Date;
+    cpf!: string;
+    genero!: string;
+    telefone!: string;
     cep!: string;
 }
