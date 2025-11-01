@@ -4,7 +4,7 @@
   </div>
 
   <mat-dialog-content>
-    <div @fadeInUp fxFlex="auto" [formGroup]="form">
+    <div fxFlex="auto" [formGroup]="form">
       <div class="px-6 py-4" fxLayout="column" fxLayoutGap="16px">
 
         <mat-form-field appearance="outline" class="full-width">
@@ -88,7 +88,9 @@
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button mat-raised-button color="primary" [disabled]="form.invalid"
+    <button mat-button mat-raised-button color="primary"
       (click)="cadastrar()">Cadastrar</button>
   </mat-dialog-actions>
 </div>
+
+<!-- [disabled]="form.invalid" -->

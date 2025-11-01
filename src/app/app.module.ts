@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NgxMaskModule } from 'ngx-mask';
+import { CpfPipe } from './pipes/cpf.pipe';
 
 let globalFormFieldOptions: MatFormFieldDefaultOptions = {
   appearance: "outline",
@@ -35,7 +36,8 @@ let globalFormFieldOptions: MatFormFieldDefaultOptions = {
     AppComponent,
     ClientesComponent,
     MedicosComponent,
-    ModalCadastrarClienteComponent
+    ModalCadastrarClienteComponent,
+    CpfPipe
   ],
   imports: [
     BrowserModule,

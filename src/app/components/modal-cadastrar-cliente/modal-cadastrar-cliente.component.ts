@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Cliente } from 'src/app/model/cliente';
 import { ViacepService } from 'src/app/services/viacep.service';
 
 @Component({
@@ -11,7 +12,12 @@ import { ViacepService } from 'src/app/services/viacep.service';
 export class ModalCadastrarClienteComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private cd: ChangeDetectorRef, private fb: FormBuilder, private viacep: ViacepService, private dialogRef: MatDialogRef<ModalCadastrarClienteComponent>) {
+  constructor(private cd: ChangeDetectorRef,
+              private fb: FormBuilder,
+              private viacep: ViacepService,
+              private dialogRef: MatDialogRef<ModalCadastrarClienteComponent>,
+              @Optional() @Inject(MAT_DIALOG_DATA) public data: Cliente
+  ) {
     this.form = this.fb.group({
       nomeCompleto: ['', Validators.required],
       cpf: ['', Validators.required],
@@ -28,10 +34,32 @@ export class ModalCadastrarClienteComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(this.data);
+    if(this.data) {
+    this.preenchimentoForm(this.data);  
+    }
+   }
 
   cadastrar() {
     this.dialogRef.close(this.form?.value)
+  }
+
+  preenchimentoForm(cliente: Cliente) {
+    this.form = this.fb.group({
+      nomeCompleto: [cliente.nomeCompleto, Validators.required],
+      cpf: [cliente.cpf, Validators.required],
+      dataNascimento: ['', Validators.required],
+      genero: ['', Validators.required],
+      telefone: ['', Validators.required],
+      cep: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      bairro: ['', Validators.required],
+      numero: [''],
+      complemento: [''],
+      cidade: ['', Validators.required],
+      estado: ['', Validators.required],
+    });
   }
 
   onCepBlur(): void {
