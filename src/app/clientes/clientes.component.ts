@@ -83,16 +83,7 @@ export class ClientesComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(novoCliente => {
       if (novoCliente) {
         console.log("Teste" , novoCliente);
-        let endereco = new Endereco()
-        endereco.cep = novoCliente.cep
-        endereco.logradouro = novoCliente.logradouro
-        endereco.bairro = novoCliente.bairro
-        endereco.numero = novoCliente.numero
-        endereco.complemento = novoCliente.complemento
-        endereco.cidade = novoCliente.cidade
-        endereco.estado = novoCliente.estado
-        novoCliente.endereco = endereco
-        console.log("Teste" , novoCliente);
+        novoCliente = this.montarCliente(novoCliente);
         this.clientes.push(novoCliente);
         this.dataSource = new MatTableDataSource(this.clientes);
         this.limparFiltro();
@@ -113,11 +104,26 @@ export class ClientesComponent implements OnInit, AfterViewInit {
       if (clienteEditado) {
         let indEditado = this.clientes.indexOf(cliente);
         if (indEditado > -1) {
+          clienteEditado = this.montarCliente(clienteEditado);
           this.clientes[indEditado] = clienteEditado;
           this.dataSource = new MatTableDataSource(this.clientes);
         }
       }
     });
   }
+
+  private montarCliente(novoCliente: any): Cliente  {
+    let endereco = new Endereco();
+    endereco.cep = novoCliente.cep;
+    endereco.logradouro = novoCliente.logradouro;
+    endereco.bairro = novoCliente.bairro;
+    endereco.numero = novoCliente.numero;
+    endereco.complemento = novoCliente.complemento;
+    endereco.cidade = novoCliente.cidade;
+    endereco.estado = novoCliente.estado;
+    novoCliente.endereco = endereco;
+    return novoCliente;
+  }
+
 }
 
