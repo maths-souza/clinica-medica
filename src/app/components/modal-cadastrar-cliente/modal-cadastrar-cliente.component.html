@@ -50,18 +50,18 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Logradouro</mat-label>
-          <input matInput formControlName="logradouro" placeholder="Ex: Av. Paulista" required />
+          <input matInput formControlName="logradouro" placeholder="Ex: Av. Paulista" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Número</mat-label>
-          <input matInput formControlName="numero" placeholder="Digite o número do seu local" mask="00000" />
+          <input matInput formControlName="numero" placeholder="Digite o número do seu local" />
         </mat-form-field>
 
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
           <mat-form-field appearance="outline" fxFlex="auto">
             <mat-label>Bairro</mat-label>
-            <input matInput formControlName="bairro" placeholder="Ex: Centro" required />
+            <input matInput formControlName="bairro" placeholder="Ex: Centro" />
           </mat-form-field>
 
           <mat-form-field appearance="outline" fxFlex="auto">
@@ -73,12 +73,12 @@
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutGap.lt-sm="0">
           <mat-form-field appearance="outline" fxFlex="auto">
             <mat-label>Cidade</mat-label>
-            <input matInput formControlName="cidade" placeholder="Ex: São Paulo" required />
+            <input matInput formControlName="cidade" placeholder="Ex: São Paulo" />
           </mat-form-field>
 
           <mat-form-field appearance="outline" fxFlex="auto">
             <mat-label>Estado</mat-label>
-            <input matInput formControlName="estado" placeholder="Ex: RJ" required />
+            <input matInput formControlName="estado" placeholder="Ex: RJ" />
           </mat-form-field>
         </div>
 
@@ -88,9 +88,6 @@
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button mat-raised-button color="primary"
-      (click)="cadastrar()">Cadastrar</button>
+    <button mat-button mat-raised-button color="primary" (click)="cadastrar()" [disabled]="form.invalid">Cadastrar</button>
   </mat-dialog-actions>
 </div>
-
-<!-- [disabled]="form.invalid" -->

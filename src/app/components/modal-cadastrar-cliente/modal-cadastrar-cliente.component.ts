@@ -25,12 +25,12 @@ export class ModalCadastrarClienteComponent implements OnInit {
       genero: ['', Validators.required],
       telefone: ['', Validators.required],
       cep: ['', Validators.required],
-      logradouro: ['', Validators.required],
-      bairro: ['', Validators.required],
+      logradouro: [''],
+      bairro: [''],
       numero: [''],
       complemento: [''],
-      cidade: ['', Validators.required],
-      estado: ['', Validators.required],
+      cidade: [''],
+      estado: [''],
     });
   }
 
@@ -42,23 +42,26 @@ export class ModalCadastrarClienteComponent implements OnInit {
    }
 
   cadastrar() {
+    console.log("Cadastrando", this.form.value)
     this.dialogRef.close(this.form?.value)
   }
 
   preenchimentoForm(cliente: Cliente) {
+    console.log("Edição", cliente);
+    
     this.form = this.fb.group({
       nomeCompleto: [cliente.nomeCompleto, Validators.required],
       cpf: [cliente.cpf, Validators.required],
-      dataNascimento: ['', Validators.required],
-      genero: ['', Validators.required],
-      telefone: ['', Validators.required],
-      cep: ['', Validators.required],
-      logradouro: ['', Validators.required],
-      bairro: ['', Validators.required],
-      numero: [''],
-      complemento: [''],
-      cidade: ['', Validators.required],
-      estado: ['', Validators.required],
+      dataNascimento: [cliente.dataNascimento, Validators.required],
+      genero: [cliente.genero, Validators.required],
+      telefone: [cliente.telefone, Validators.required],
+      cep: [cliente.endereco.cep, Validators.required],
+      logradouro: [cliente.endereco.logradouro],
+      bairro: [cliente.endereco.bairro],
+      numero: [cliente.endereco.numero],
+      complemento: [cliente.endereco.complemento],
+      cidade: [cliente.endereco.cidade],
+      estado: [cliente.endereco.estado],
     });
   }
 

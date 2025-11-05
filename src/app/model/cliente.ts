@@ -1,3 +1,5 @@
+import { Endereco } from "./endereco";
+
 export class Cliente {
     id!: number;
     nomeCompleto!: string;
@@ -5,5 +7,5 @@ export class Cliente {
     cpf!: string;
     genero!: string;
     telefone!: string;
-    cep!: string;
+    endereco!: Endereco;
 }

@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Endereco } from '../model/endereco';
 
 @Component({
   selector: 'app-clientes',
@@ -34,10 +35,10 @@ export class ClientesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.clientes = [
-      { id: 1, nomeCompleto: 'João Silva', dataNascimento: new Date('1992-10-01'), cpf: '999.999.999-99', genero: 'Masculino', telefone: "(11) 99999-9999", cep: '01001-000' },
-      { id: 2, nomeCompleto: 'Maria Oliveira', dataNascimento: new Date('2004-10-02'), cpf: '000.000.000-00', genero: 'Feminino', telefone: "(11) 99999-9999", cep: '01001-000' },
-      { id: 3, nomeCompleto: 'Carlos Souza', dataNascimento: new Date('1973-10-03'), cpf: '111.111.111-11', genero: 'Masculino', telefone: "(11) 99999-9999", cep: '01001-000' },
-      { id: 4, nomeCompleto: 'Ana Pereira', dataNascimento: new Date('1965-10-04'), cpf: '111.111.111-11', genero: 'Feminino', telefone: "(11) 99999-9999", cep: '01001-000' },
+      { id: 1, nomeCompleto: 'João Silva', dataNascimento: new Date('1992-10-01'), cpf: '999.999.999-99', genero: 'Masculino', telefone: "(11) 99999-9999", endereco: {cep: '01001-000'}},
+      { id: 2, nomeCompleto: 'Maria Oliveira', dataNascimento: new Date('2004-10-02'), cpf: '000.000.000-00', genero: 'Feminino', telefone: "(11) 99999-9999", endereco: {cep: '01001-000'}},
+      { id: 3, nomeCompleto: 'Carlos Souza', dataNascimento: new Date('1973-10-03'), cpf: '111.111.111-11', genero: 'Masculino', telefone: "(11) 99999-9999", endereco: {cep: '01001-000'}},
+      { id: 4, nomeCompleto: 'Ana Pereira', dataNascimento: new Date('1965-10-04'), cpf: '111.111.111-11', genero: 'Feminino', telefone: "(11) 99999-9999", endereco: {cep: '01001-000'}},
     ];
     this.dataSource = new MatTableDataSource(this.clientes);
 
@@ -79,12 +80,26 @@ export class ClientesComponent implements OnInit, AfterViewInit {
       width: '600px'
     })
 
-    dialogRef.afterClosed().subscribe((novoCliente: Cliente) => {
+    dialogRef.afterClosed().subscribe(novoCliente => {
       if (novoCliente) {
+        console.log("Teste" , novoCliente);
+        let endereco = new Endereco()
+        endereco.cep = novoCliente.cep
+        endereco.logradouro = novoCliente.logradouro
+        endereco.bairro = novoCliente.bairro
+        endereco.numero = novoCliente.numero
+        endereco.complemento = novoCliente.complemento
+        endereco.cidade = novoCliente.cidade
+        endereco.estado = novoCliente.estado
+        novoCliente.endereco = endereco
+        console.log("Teste" , novoCliente);
         this.clientes.push(novoCliente);
         this.dataSource = new MatTableDataSource(this.clientes);
         this.limparFiltro();
       }
+    }, (error) => {
+      console.log(error);
+      
     });
   };
 
