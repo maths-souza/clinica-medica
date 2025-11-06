@@ -26,6 +26,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NgxMaskModule } from 'ngx-mask';
 import { CpfPipe } from './pipes/cpf.pipe';
+import { CepPipe } from './pipes/cep.pipe';
+import { TelefonePipe } from './pipes/telefone.pipe';
 
 let globalFormFieldOptions: MatFormFieldDefaultOptions = {
   appearance: "outline",
@@ -37,7 +39,9 @@ let globalFormFieldOptions: MatFormFieldDefaultOptions = {
     ClientesComponent,
     MedicosComponent,
     ModalCadastrarClienteComponent,
-    CpfPipe
+    CpfPipe,
+    CepPipe,
+    TelefonePipe
   ],
   imports: [
     BrowserModule,
