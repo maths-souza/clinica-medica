@@ -35,10 +35,10 @@ export class ClientesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.clientes = [
-      { id: 1, nomeCompleto: 'João Silva', dataNascimento: new Date('1992-10-01'), cpf: '476.965.421-92', genero: 'Masculino', telefone: "(44) 99101-0977", endereco: {cep: '87509-779'}},
-      { id: 2, nomeCompleto: 'Maria Oliveira', dataNascimento: new Date('2004-10-02'), cpf: '874.786.257-20', genero: 'Feminino', telefone: "(48) 98571-4474", endereco: {cep: '88806-782'}},
-      { id: 3, nomeCompleto: 'Carlos Souza', dataNascimento: new Date('1973-10-03'), cpf: '772.133.293-16', genero: 'Masculino', telefone: "(92) 98202-5590", endereco: {cep: '69088-365'}},
-      { id: 4, nomeCompleto: 'Ana Pereira', dataNascimento: new Date('1965-10-04'), cpf: '856.977.492-36', genero: 'Feminino', telefone: "(51) 98468-5111", endereco: {cep: '90690-120'}},
+      { id: 1, nomeCompleto: 'João Silva', dataNascimento: new Date('1992-10-01'), cpf: '476.965.421-92', genero: 'Masculino', telefone: "(44) 99101-0977", endereco: { cep: '87509-779', logradouro: 'Rua Nossa Senhora do Carmo', bairro: 'Ipiranga', numero: '331', complemento: 'Casa', cidade: 'Arapiraca', estado: 'AL' } },
+      { id: 2, nomeCompleto: 'Maria Oliveira', dataNascimento: new Date('2004-10-02'), cpf: '874.786.257-20', genero: 'Feminino', telefone: "(48) 98571-4474", endereco: { cep: '88806-782', logradouro: 'Rua Paulo Polita', bairro: 'Petrópolis', numero: '116', complemento: 'Casa', cidade: 'Passo Fundo', estado: 'RS' } },
+      { id: 3, nomeCompleto: 'Carlos Souza', dataNascimento: new Date('1973-10-03'), cpf: '772.133.293-16', genero: 'Masculino', telefone: "(92) 98202-5590", endereco: { cep: '69088-365', logradouro: 'Av. Presidente Vargas', bairro: 'Centro', numero: '2015', complemento: 'Apartamento', cidade: 'Curitiba', estado: 'PR' } },
+      { id: 4, nomeCompleto: 'Ana Pereira', dataNascimento: new Date('1965-10-04'), cpf: '856.977.492-36', genero: 'Feminino', telefone: "(51) 98468-5111", endereco: { cep: '90690-120', logradouro: 'Rua Osvaldo Zierke', bairro: 'Águas Claras', numero: '149', complemento: 'Casa', cidade: 'Brusque', estado: 'SC' } },
     ];
     this.dataSource = new MatTableDataSource(this.clientes);
 
@@ -84,7 +84,7 @@ export class ClientesComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(novoCliente => {
       if (novoCliente) {
-        console.log("Teste" , novoCliente);
+        console.log("Teste", novoCliente);
         novoCliente = this.montarCliente(novoCliente);
         this.clientes.push(novoCliente);
         this.dataSource = new MatTableDataSource(this.clientes);
@@ -94,18 +94,19 @@ export class ClientesComponent implements OnInit, AfterViewInit {
       }
     }, (error) => {
       console.log(error);
-      
+
     });
   };
 
-  visualizar(cliente : Cliente){
-    let dialogRef = this.dialog.open(ModalCadastrarClienteComponent, 
-      { width: '600px',
-        data: {cliente: cliente, visualizar: true}
-       });
-       dialogRef.afterClosed().subscribe(()=>{
+  visualizar(cliente: Cliente) {
+    let dialogRef = this.dialog.open(ModalCadastrarClienteComponent,
+      {
+        width: '600px',
+        data: { cliente: cliente, visualizar: true }
+      });
+    dialogRef.afterClosed().subscribe(() => {
 
-       });
+    });
   }
 
   editar(cliente: Cliente) {
@@ -128,7 +129,7 @@ export class ClientesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private montarCliente(novoCliente: any): Cliente  {
+  private montarCliente(novoCliente: any): Cliente {
     let endereco = new Endereco();
     endereco.cep = novoCliente.cep;
     endereco.logradouro = novoCliente.logradouro;
