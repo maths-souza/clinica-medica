@@ -1,6 +1,6 @@
 <div>
   <div class="px-6 py-4 border-b" fxLayout="row" fxLayoutAlign="start center">
-    <h2 class="title m-0">Novo Cliente</h2>
+    <h2 class="title m-0" >{{ modo === 'visualizar' ? 'Visualizar Cliente': modo === 'editar' ? 'Alterar dados do cliente':'Novo Cliente' }}</h2>
   </div>
 
   <mat-dialog-content>
@@ -87,7 +87,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button mat-raised-button color="primary" (click)="cadastrar()" [disabled]="form.invalid">Cadastrar</button>
+    <button mat-button mat-dialog-close>{{modo === 'visualizar' ? 'Fechar' : 'Cancelar' }}</button>
+    <button *ngIf="modo !== 'visualizar'" mat-button mat-raised-button color="primary" (click)="cadastrar()" [disabled]="form.invalid">Cadastrar</button>
   </mat-dialog-actions>
 </div>

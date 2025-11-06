@@ -35,10 +35,10 @@ export class ClientesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.clientes = [
-      { id: 1, nomeCompleto: 'João Silva', dataNascimento: new Date('1992-10-01'), cpf: '999.999.999-99', genero: 'Masculino', telefone: "(11) 99999-9999", endereco: {cep: '01001-000'}},
-      { id: 2, nomeCompleto: 'Maria Oliveira', dataNascimento: new Date('2004-10-02'), cpf: '000.000.000-00', genero: 'Feminino', telefone: "(11) 99999-9999", endereco: {cep: '01001-000'}},
-      { id: 3, nomeCompleto: 'Carlos Souza', dataNascimento: new Date('1973-10-03'), cpf: '111.111.111-11', genero: 'Masculino', telefone: "(11) 99999-9999", endereco: {cep: '01001-000'}},
-      { id: 4, nomeCompleto: 'Ana Pereira', dataNascimento: new Date('1965-10-04'), cpf: '111.111.111-11', genero: 'Feminino', telefone: "(11) 99999-9999", endereco: {cep: '01001-000'}},
+      { id: 1, nomeCompleto: 'João Silva', dataNascimento: new Date('1992-10-01'), cpf: '476.965.421-92', genero: 'Masculino', telefone: "(44) 99101-0977", endereco: {cep: '87509-779'}},
+      { id: 2, nomeCompleto: 'Maria Oliveira', dataNascimento: new Date('2004-10-02'), cpf: '874.786.257-20', genero: 'Feminino', telefone: "(48) 98571-4474", endereco: {cep: '88806-782'}},
+      { id: 3, nomeCompleto: 'Carlos Souza', dataNascimento: new Date('1973-10-03'), cpf: '772.133.293-16', genero: 'Masculino', telefone: "(92) 98202-5590", endereco: {cep: '69088-365'}},
+      { id: 4, nomeCompleto: 'Ana Pereira', dataNascimento: new Date('1965-10-04'), cpf: '856.977.492-36', genero: 'Feminino', telefone: "(51) 98468-5111", endereco: {cep: '90690-120'}},
     ];
     this.dataSource = new MatTableDataSource(this.clientes);
 
@@ -66,6 +66,8 @@ export class ClientesComponent implements OnInit, AfterViewInit {
     if (indiceRemover > -1) {
       this.clientes.splice(indiceRemover, 1);
       this.dataSource = new MatTableDataSource(this.clientes);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }
   }
 
@@ -86,6 +88,8 @@ export class ClientesComponent implements OnInit, AfterViewInit {
         novoCliente = this.montarCliente(novoCliente);
         this.clientes.push(novoCliente);
         this.dataSource = new MatTableDataSource(this.clientes);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         this.limparFiltro();
       }
     }, (error) => {
@@ -94,10 +98,20 @@ export class ClientesComponent implements OnInit, AfterViewInit {
     });
   };
 
+  visualizar(cliente : Cliente){
+    let dialogRef = this.dialog.open(ModalCadastrarClienteComponent, 
+      { width: '600px',
+        data: {cliente: cliente, visualizar: true}
+       });
+       dialogRef.afterClosed().subscribe(()=>{
+
+       });
+  }
+
   editar(cliente: Cliente) {
     const dialogRef = this.dialog.open(ModalCadastrarClienteComponent, {
       width: '600px',
-      data: cliente
+      data: { cliente: cliente, visualizar: false }
     });
 
     dialogRef.afterClosed().subscribe((clienteEditado: Cliente) => {
@@ -107,6 +121,8 @@ export class ClientesComponent implements OnInit, AfterViewInit {
           clienteEditado = this.montarCliente(clienteEditado);
           this.clientes[indEditado] = clienteEditado;
           this.dataSource = new MatTableDataSource(this.clientes);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         }
       }
     });

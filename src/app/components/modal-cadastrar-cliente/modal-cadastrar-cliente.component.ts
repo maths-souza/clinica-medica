@@ -11,12 +11,14 @@ import { ViacepService } from 'src/app/services/viacep.service';
 })
 export class ModalCadastrarClienteComponent implements OnInit {
   form: FormGroup;
+  visualizar: boolean = false;
+  modo: 'visualizar' | 'novo' | 'editar' = 'novo';
 
   constructor(private cd: ChangeDetectorRef,
               private fb: FormBuilder,
               private viacep: ViacepService,
               private dialogRef: MatDialogRef<ModalCadastrarClienteComponent>,
-              @Optional() @Inject(MAT_DIALOG_DATA) public data: Cliente
+              @Optional() @Inject(MAT_DIALOG_DATA) public data: { cliente: Cliente, visualizar: boolean }
   ) {
     this.form = this.fb.group({
       nomeCompleto: ['', Validators.required],
@@ -36,8 +38,17 @@ export class ModalCadastrarClienteComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data);
-    if(this.data) {
-    this.preenchimentoForm(this.data);  
+    if(this.data?.cliente) {
+    this.preenchimentoForm(this.data.cliente);
+    if (this.data?.visualizar) {
+    this.modo = 'visualizar';
+    this.visualizar = true;
+    this.form.disable();
+  }else {
+        this.modo = 'editar';
+      }
+    } else {
+      this.modo = 'novo';
     }
    }
 

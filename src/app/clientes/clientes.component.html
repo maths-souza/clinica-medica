@@ -55,6 +55,9 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
       <td mat-cell *matCellDef="let cliente" class="icones-acoes">
+        <button mat-icon-button (click)="visualizar(cliente)" matTooltip="Visualizar">
+          <mat-icon>visibility</mat-icon>
+        </button>
         <button mat-icon-button (click)="editar(cliente)">
           <mat-icon color="primary">edit</mat-icon>
         </button>
